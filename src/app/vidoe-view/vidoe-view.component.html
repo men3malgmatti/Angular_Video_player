@@ -1,0 +1,13 @@
+<div class="row">
+  <div id="box" class="embed-responsive embed-responsive-16by9">
+    <youtube-player [videoId]="id"></youtube-player>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-success"
+    (click)="bookmarkUrl()"
+    [disabled]="disabled"
+  >
+    Bookmark
+  </button>
+</div>

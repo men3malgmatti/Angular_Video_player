@@ -1,0 +1,56 @@
+<nav class="navbar navbar-defualt">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Angular Vidoe Player</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#" (click)="bookmarkNav = false">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" (click)="bookmarkNav = true">Bookmarks</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div *ngIf="bookmarkNav === true" class="col-md-5">
+    <h3>Bookmarks</h3>
+    <app-bookmarks
+      *ngFor="let url of urlBookmarkList"
+      [urlBookmarks]="url"
+    ></app-bookmarks>
+  </div>
+  <div *ngIf="bookmarkNav !== true">
+    <div class="row">
+      <div class="col-md-7">
+        <app-search-bar (onUrl)="setUrl($event)"></app-search-bar>
+      </div>
+    </div>
+
+    <p class="alert alert-success" *ngIf="bookmarkAlert === true">
+      {{ bookmarkMessage }}
+    </p>
+    <hr />
+    <div class="row">
+      <div class="col-md-7">
+        <app-vidoe-view
+          [id]="videoId"
+          (onBookmark)="bookmarkAdded($event)"
+          [disabled]="bookmarkExists"
+        ></app-vidoe-view>
+      </div>
+      <div class="col-md-5">
+        <h3 class="text-center">History</h3>
+        <div>
+          <app-history
+            *ngFor="let url of urlHistoryList"
+            [urlList]="url"
+            (onHistoryLink)="historyUrl($event)"
+          ></app-history>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

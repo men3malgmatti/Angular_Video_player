@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <form [formGroup]="urlInputForm" (ngSubmit)="onSubmit()">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Insert a Youtube Vidoe Url "
+          formControlName="urlInput"
+        />
+        <span
+          *ngIf="
+            !urlInputForm.get('urlInput').valid &&
+            urlInputForm.get('urlInput').touched
+          "
+          class="help-block"
+          >Please enter a valid Youtube URL</span
+        >
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!urlInputForm.get('urlInput').valid"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
